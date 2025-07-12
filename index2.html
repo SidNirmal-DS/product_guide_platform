@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Guidance Platform - Development Infographic</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            min-width: 120px;
+            flex-shrink: 0;
+        }
+        .flow-arrow {
+            width: 40px;
+            height: 2px;
+            background-color: #163E93; /* Royal Blue */
+            position: relative;
+        }
+        .flow-arrow::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: -4px;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            border-left: 8px solid #163E93; /* Royal Blue */
+        }
+        .vertical-line {
+            width: 2px;
+            height: 30px;
+            background-color: #163E93; /* Royal Blue */
+        }
+        .horizontal-line {
+            width: 40px;
+            height: 2px;
+            background-color: #163E93; /* Royal Blue */
+        }
+        .arrow-down::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            bottom: -8px;
+            transform: translateX(-50%);
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 8px solid #163E93; /* Royal Blue */
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Color Palette Used: Brilliant Blues (#051C2A, #163E93, #30A3DA, #FFFFFF) -->
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-extrabold text-[#163E93] mb-2">Product Guidance Platform</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">Your essential guide to the collaborative process flow across Product Management, System Architects, and Agile Release Trains (ARTs).</p>
+        </header>
+
+        <main class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <section class="md:col-span-2 lg:col-span-3 bg-white rounded-lg shadow-md p-6 text-center">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4 text-center">Prioritizing the Product Backlog</h2>
+                <p class="text-gray-700 mb-6 text-center mx-auto max-w-4xl">Effective product development hinges on clear prioritization. This chart illustrates a typical distribution of effort across different priority levels for Epics and Features, guiding teams to focus on delivering maximum business value first.</p>
+                <div class="chart-container mx-auto">
+                    <canvas id="priorityChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4">Product Development Flow: From Vision to Delivery</h2>
+                <p class="text-gray-700 mb-8">This diagram outlines the collaborative journey of a product increment, from strategic inception by Product Management, through architectural design by System Architects, and finally to execution by Agile Release Trains (ARTs). It emphasizes the handoffs and continuous collaboration.</p>
+                <div class="w-full overflow-x-auto pb-4">
+                    <div class="flex items-start justify-center min-w-[1000px] py-4">
+                        <div class="flex flex-col items-center">
+                            <div class="flow-node bg-[#051C2A] text-white">
+                                <p class="font-bold">Product Management</p>
+                                <p class="text-sm mt-1">Vision & Epics</p>
+                            </div>
+                            <div class="vertical-line relative arrow-down mt-4 mb-4"></div>
+                        </div>
+                        
+                        <div class="flex flex-col items-center mx-8">
+                            <div class="flow-node bg-[#163E93] text-white">
+                                <p class="font-bold">System Architects</p>
+                                <p class="text-sm mt-1">Architectural Runway & Enablers</p>
+                            </div>
+                            <div class="vertical-line relative arrow-down mt-4 mb-4"></div>
+                        </div>
+
+                        <div class="flex flex-col items-center">
+                            <div class="flow-node bg-[#30A3DA] text-white">
+                                <p class="font-bold">Agile Release Train (ART)</p>
+                                <p class="text-sm mt-1">Features & User Stories</p>
+                            </div>
+                            <div class="vertical-line relative arrow-down mt-4 mb-4"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-center min-w-[1000px]">
+                        <div class="flow-node bg-[#30A3DA] text-white">
+                            <p class="font-bold">Development Sprints</p>
+                            <p class="text-sm mt-1">Build & Test</p>
+                        </div>
+                        <div class="flow-arrow mx-4"></div>
+                        <div class="flow-node bg-[#30A3DA] text-white">
+                            <p class="font-bold">Continuous Delivery</p>
+                            <p class="text-sm mt-1">Release & Feedback</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4 text-center">Agile Principles in Practice</h2>
+                <p class="text-gray-700 mb-6">Agile methodologies underpin modern product development, emphasizing iterative progress, flexibility, and customer collaboration. Key principles include:</p>
+                <ul class="list-disc list-inside text-gray-700 space-y-2 ml-4">
+                    <li>Individuals and interactions over processes and tools</li>
+                    <li>Working software over comprehensive documentation</li>
+                    <li>Customer collaboration over contract negotiation</li>
+                    <li>Responding to change over following a plan</li>
+                </ul>
+                <p class="text-gray-700 mt-4">These principles guide our approach to Epics, Features, and User Stories, ensuring adaptability and continuous value delivery.</p>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4">Kanban for Flow Optimization</h2>
+                <p class="text-gray-700 mb-6">Kanban is a method for managing and improving work across human systems. It emphasizes continuous delivery while not overburdening the team. Key practices include:</p>
+                <div class="flex flex-col items-center space-y-2 mt-4">
+                    <div class="w-full bg-gray-100 rounded-md p-3 text-center text-[#051C2A] font-semibold shadow-sm">To Do</div>
+                    <div class="w-full bg-gray-100 rounded-md p-3 text-center text-[#163E93] font-semibold shadow-sm">In Progress</div>
+                    <div class="w-full bg-gray-100 rounded-md p-3 text-center text-[#30A3DA] font-semibold shadow-sm">Done</div>
+                </div>
+                <p class="text-gray-700 mt-4">Visualizing workflow and limiting work in progress are central to optimizing flow.</p>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4">Design Thinking for User-Centric Solutions</h2>
+                <p class="text-gray-700 mb-6">Design Thinking is a human-centered approach to innovation that integrates the needs of people, the possibilities of technology, and the requirements for business success. Its five phases are:</p>
+                <div class="grid gap-2 mt-4" style="grid-template-columns: auto auto 1fr; align-items: start;">
+                    <div class="contents">
+                        <span class="text-xl text-[#051C2A] mr-2">1.</span>
+                        <span class="font-semibold text-[#051C2A] mr-1">Empathize:</span>
+                        <span>Understand users.</span>
+                    </div>
+                    <div class="contents">
+                        <span class="text-xl text-[#163E93] mr-2">2.</span>
+                        <span class="font-semibold text-[#163E93] mr-1">Define:</span>
+                        <span>State user needs.</span>
+                    </div>
+                    <div class="contents">
+                        <span class="text-xl text-[#30A3DA] mr-2">3.</span>
+                        <span class="font-semibold text-[#30A3DA] mr-1">Ideate:</span>
+                        <span>Challenge assumptions, create ideas.</span>
+                    </div>
+                    <div class="contents">
+                        <span class="text-xl text-[#163E93] mr-2">4.</span>
+                        <span class="font-semibold text-[#163E93] mr-1">Prototype:</span>
+                        <span>Start creating solutions.</span>
+                    </div>
+                    <div class="contents">
+                        <span class="text-xl text-[#051C2A] mr-2">5.</span>
+                        <span class="font-semibold text-[#051C2A] mr-1">Test:</span>
+                        <span>Try solutions out.</span>
+                    </div>
+                </div>
+                <p class="text-gray-700 mt-4">This iterative process ensures solutions are desirable, feasible, and viable.</p>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4">Waterfall: A Structured Approach</h2>
+                <p class="text-gray-700 mb-6">The Waterfall model is a sequential, linear process for software development. Each phase must be completed before the next begins, making it suitable for projects with well-defined requirements.</p>
+                <div class="flex flex-col items-center mt-4">
+                    <div class="flow-node bg-[#051C2A] text-white w-full">Requirements</div>
+                    <div class="vertical-line relative arrow-down mt-2 mb-2"></div>
+                    <div class="flow-node bg-[#163E93] text-white w-full">Design</div>
+                    <div class="vertical-line relative arrow-down mt-2 mb-2"></div>
+                    <div class="flow-node bg-[#30A3DA] text-white w-full">Implementation</div>
+                    <div class="vertical-line relative arrow-down mt-2 mb-2"></div>
+                    <div class="flow-node bg-[#163E93] text-white w-full">Verification</div>
+                    <div class="vertical-line relative arrow-down mt-2 mb-2"></div>
+                    <div class="flow-node bg-[#051C2A] text-white w-full">Maintenance</div>
+                </div>
+                <p class="text-gray-700 mt-4">While less flexible, Waterfall provides strong control and predictability for certain project types.</p>
+            </section>
+
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4">Feature Complexity Distribution</h2>
+                 <p class="text-gray-700 mb-6">Understanding the complexity of features is crucial for accurate planning and resource allocation. This bar chart provides a hypothetical breakdown of features by their estimated complexity, aiding in sprint planning and capacity forecasting.</p>
+                <div class="chart-container">
+                    <canvas id="featureComplexityChart"></canvas>
+                </div>
+            </section>
+            
+            <section class="bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4">Decomposition: From Epic to Stories</h2>
+                <p class="text-gray-700 mb-6">Breaking down large initiatives into manageable work items is fundamental to Agile. This section illustrates how a single Epic is decomposed into multiple Features, which are then further refined into actionable User Stories with detailed Acceptance Criteria.</p>
+                <div class="space-y-4 mt-8 text-gray-800">
+                    <div class="font-bold text-lg text-[#051C2A]">Epic: Enhanced Platform Scalability</div>
+                    <div class="ml-4">
+                        <div class="font-semibold text-base text-[#163E93]">→ Feature: Optimize Database Queries</div>
+                        <div class="ml-4 text-sm">
+                            <p class="text-gray-800">→ User Story: As a user, I want faster page load times for large datasets, so I can access information quickly.</p>
+                            <p class="italic text-gray-600 ml-4">Acceptance Criteria: Given a dataset of 1M records, When I load the dashboard, Then the page load time is less than 2 seconds.</p>
+                        </div>
+                        <div class="ml-4 text-sm mt-2">
+                            <p class="text-gray-800">→ User Story: As a developer, I want optimized database indexes, so queries execute efficiently.</p>
+                            <p class="italic text-gray-600 ml-4">Acceptance Criteria: Given an existing query, When new indexes are applied, Then query execution time is reduced by 50%.</p>
+                        </div>
+                    </div>
+                    <div class="ml-4 mt-4">
+                        <div class="font-semibold text-base text-[#163E93]">→ Feature: Implement Caching Layer</div>
+                        <div class="ml-4 text-sm">
+                            <p class="text-gray-800">→ User Story: As a user, I want frequently accessed data to load instantly, so my experience is seamless.</p>
+                            <p class="italic text-gray-600 ml-4">Acceptance Criteria: Given a cached data request, When I access the data, Then response time is under 100ms.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="lg:col-span-3 bg-white rounded-lg shadow-md p-6">
+                <h2 class="text-2xl font-bold text-[#163E93] mb-4 text-center">Acceptance Criteria Adherence</h2>
+                <p class="text-gray-700 mb-6">Well-defined acceptance criteria are vital for clear communication and effective testing. This metric highlights the percentage of user stories that have comprehensive Gherkin-syntax acceptance criteria, ensuring shared understanding across the team.</p>
+                <div class="text-center mt-8">
+                    <p class="text-6xl font-extrabold text-[#163E93]">92%</p>
+                    <p class="text-lg text-gray-700 mt-2">of User Stories have Defined Acceptance Criteria</p>
+                    <div class="w-full bg-gray-200 rounded-full h-4 mt-4 mx-auto max-w-md">
+                        <div class="bg-[#163E93] h-4 rounded-full" style="width: 92%;"></div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 text-gray-600 text-sm">
+            <p>Created by Siddharth Nirmal (AI Product Leader)</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label, maxWidth) => {
+            const words = label.split(' ');
+            let lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if (currentLine.length + words[i].length + 1 < maxWidth) {
+                    currentLine += ' ' + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            }
+            return label;
+        };
+
+        const chartColors = {
+            darkBlue: '#051C2A',
+            royalBlue: '#163E93',
+            skyBlue: '#30A3DA',
+            white: '#FFFFFF',
+            grayText: '#4A5568'
+        };
+
+        const priorityCtx = document.getElementById('priorityChart').getContext('2d');
+        new Chart(priorityCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['High Value Epics/Features', 'Medium Value Features', 'Low Value Enablers/Refinements'],
+                datasets: [{
+                    label: 'Product Backlog Distribution',
+                    data: [50, 35, 15], // Example percentages
+                    backgroundColor: [chartColors.darkBlue, chartColors.royalBlue, chartColors.skyBlue],
+                    borderColor: '#fff',
+                    borderWidth: 4,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            color: chartColors.grayText // Set legend text color
+                        }
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                },
+                cutout: '60%'
+            }
+        });
+
+        const featureComplexityCtx = document.getElementById('featureComplexityChart').getContext('2d');
+        new Chart(featureComplexityCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Small', 'Medium', 'Large', 'Enabler'],
+                datasets: [{
+                    label: 'Number of Features',
+                    data: [10, 7, 3, 2],
+                    backgroundColor: [chartColors.royalBlue, chartColors.skyBlue, chartColors.royalBlue, chartColors.darkBlue],
+                    borderColor: chartColors.royalBlue,
+                    borderWidth: 1,
+                    borderRadius: 4,
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                 plugins: {
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    },
+                    legend: {
+                        labels: {
+                            color: chartColors.grayText // Set legend text color
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Number of Features',
+                            color: chartColors.grayText // Set axis title color
+                        },
+                        ticks: {
+                            color: chartColors.grayText // Set axis tick color
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Complexity Level',
+                            color: chartColors.grayText // Set axis title color
+                        },
+                        ticks: {
+                            color: chartColors.grayText // Set axis tick color
+                        }
+                    }
+                }
+            }
+        });
+        
+    </script>
+</body>
+</html>
